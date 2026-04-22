@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1360">
+    <title>카드뉴스</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon/icons_music.png" type="image/x-icon">
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="bg">
+            <div class="slide">
+                <!-- Swiper -->
+                <div class="swiper cardnews">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./img/cardnews1.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/cardnews2.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/cardnews3.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/cardnews4.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/cardnews5.jpg" alt="cardnews">
+                        </div>
+                        <!-- <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_6.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_7.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_8.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_9.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_10.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_11.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_12.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_13.jpg" alt="cardnews">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./images/cardnews/cardnews_14.jpg" alt="cardnews">
+                        </div>
+                    </div> -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".cardnews", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            centeredSlides: true,
+            slideToClickedSlide: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
+
+</body>
+
+</html>
