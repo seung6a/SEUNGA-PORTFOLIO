@@ -58,34 +58,19 @@ img {
 }
 
 /* ── CUSTOM CURSOR ── */
-.cursor {
-  width: 10px;
-  height: 10px;
-  background: var(--pink);
-  border-radius: 50%;
+/* 기존 .cursor 대신 */
+* { cursor: none !important; } /* 기본 커서 완전히 숨기기 */
+
+.cursor-img {
+  width: 60px;
+  height: 60px;
   position: fixed;
-  top: 0;
-  left: 0;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s, background 0.2s;
-  mix-blend-mode: multiply;
-}
-
-.cursor-follower {
-  width: 36px;
-  height: 36px;
-  border: 2px solid var(--pink);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s var(--ease), opacity 0.3s;
-  opacity: 0.5;
+  left: -100px; /* 처음엔 화면 밖에 숨겨둠 */
+  top: -100px;
+  transform: translate(-20%, -10%);
+  transition: width 0.1s, height 0.1s;
 }
 
 /* ── NAVBAR ── */

@@ -1,51 +1,35 @@
-/* ============================================================
-   손승아 포트폴리오 - script.js
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── 1. CUSTOM CURSOR ─────────────────────────── */
-  const cursor       = document.getElementById('cursor');
-  const cursorFollow = document.getElementById('cursorFollower');
+  const cursor = document.getElementById('cursor');
+const cursorFollow = document.getElementById('cursorFollower');
 
-  let mouseX = 0, mouseY = 0;
-  let followX = 0, followY = 0;
+// ✅ 이게 핵심 — mousemove 반드시 있어야 함
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
 
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top  = mouseY + 'px';
-  });
-
-  // Smooth follower
-  function animateCursor() {
-    followX += (mouseX - followX) * 0.12;
-    followY += (mouseY - followY) * 0.12;
-    cursorFollow.style.left = followX + 'px';
-    cursorFollow.style.top  = followY + 'px';
-    requestAnimationFrame(animateCursor);
+  if (cursorFollow) {
+    cursorFollow.style.left = e.clientX + 'px';
+    cursorFollow.style.top  = e.clientY + 'px';
   }
-  animateCursor();
+});
 
-  // Cursor hover effect on links/buttons
-  document.querySelectorAll('a, button, .port-card, .sns-card, .art-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform       = 'translate(-50%, -50%) scale(2)';
-      cursorFollow.style.transform = 'translate(-50%, -50%) scale(1.4)';
-      cursor.style.background      = 'var(--purple)';
-      cursorFollow.style.borderColor = 'var(--purple)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform       = 'translate(-50%, -50%) scale(1)';
-      cursorFollow.style.transform = 'translate(-50%, -50%) scale(1)';
-      cursor.style.background      = 'var(--pink)';
-      cursorFollow.style.borderColor = 'var(--pink)';
-    });
+// 호버 효과
+document.querySelectorAll('a, button, .port-card, .sns-card, .art-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width  = '80px';
+    cursor.style.height = '80px';
   });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width  = '60px';
+    cursor.style.height = '60px';
+  });
+});
 
   /* ── 2. NAVBAR: scroll + active section ─────── */
-  const navbar   = document.getElementById('navbar');
+  const navbar = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
@@ -67,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── 3. HAMBURGER MENU ────────────────────────── */
   const hamburger = document.getElementById('hamburger');
-  const mobMenu   = document.getElementById('mobMenu');
+  const mobMenu = document.getElementById('mobMenu');
 
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
@@ -103,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateDonuts() {
     document.querySelectorAll('.skill-donut-wrap').forEach(wrap => {
-      const fill  = wrap.querySelector('.donut-fill');
-      const pct   = parseInt(fill.getAttribute('data-pct') || 0);
+      const fill = wrap.querySelector('.donut-fill');
+      const pct = parseInt(fill.getAttribute('data-pct') || 0);
       const color = fill.getAttribute('data-color') || '#FF6B9D';
       const offset = CIRCUMFERENCE * (1 - pct / 100);
       fill.style.stroke = color;
@@ -126,13 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── 6. SMOOTH SCROLL FOR ALL ANCHOR LINKS ─── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const href   = a.getAttribute('href');
+      const href = a.getAttribute('href');
       if (href === '#') return;
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
       const offset = navbar.offsetHeight + 8;
-      const top    = target.getBoundingClientRect().top + window.scrollY - offset;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
@@ -150,15 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.port-card, .art-card, .sns-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
-      const cx   = rect.left + rect.width / 2;
-      const cy   = rect.top + rect.height / 2;
-      const dx   = (e.clientX - cx) / (rect.width / 2);
-      const dy   = (e.clientY - cy) / (rect.height / 2);
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
       card.style.transform = `perspective(600px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg) translateY(-6px)`;
       card.style.transition = 'box-shadow 0.3s';
     });
     card.addEventListener('mouseleave', () => {
-      card.style.transform  = '';
+      card.style.transform = '';
       card.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s';
     });
   });
@@ -173,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── 10. FLOATING DECO STARS MOUSEMOVE ──────── */
   const decoStars = document.querySelectorAll('.deco-star');
   window.addEventListener('mousemove', e => {
-    const mx = (e.clientX / window.innerWidth  - 0.5) * 20;
+    const mx = (e.clientX / window.innerWidth - 0.5) * 20;
     const my = (e.clientY / window.innerHeight - 0.5) * 20;
     decoStars.forEach((star, i) => {
       const factor = (i + 1) * 0.5;
